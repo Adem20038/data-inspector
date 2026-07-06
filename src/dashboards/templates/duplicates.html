@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Duplicates Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1 class="page-title">Duplicate Metrics</h1>
+    <p class="page-desc">
+        Duplicate analysis across primary keys, business rules and user-defined checks
+    </p>
+</div>
+
+<!-- KPI Cards -->
+<div class="metric-grid">
+
+    <div class="metric-card">
+        <div class="metric-label">PK Duplicates</div>
+        <div class="metric-value red">
+            {{ pk_duplicates if pk_duplicates is not none else "—" }}
+        </div>
+        <div class="metric-sub">primary key violations</div>
+    </div>
+
+    <div class="metric-card">
+        <div class="metric-label">Business Duplicates</div>
+        <div class="metric-value orange">
+            {{ business_duplicates if business_duplicates is not none else "—" }}
+        </div>
+        <div class="metric-sub">business rule duplicates</div>
+    </div>
+
+    <div class="metric-card">
+        <div class="metric-label">User Duplicates</div>
+        <div class="metric-value blue">
+            {{ user_duplicates if user_duplicates is not none else "—" }}
+        </div>
+        <div class="metric-sub">custom duplicate checks</div>
+    </div>
+
+</div>
+
+<!-- Charts -->
+<div class="section">
+    <div class="section-title">Duplicate Analysis</div>
+
+    <div class="chart-grid">
+        {% for image in images %}
+        <div class="chart-item">
+            <img
+                src="{{ url_for('static', filename=image) }}"
+                alt="Duplicate chart"
+                class="chart-img"
+            >
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+{% endblock %}

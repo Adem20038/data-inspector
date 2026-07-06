@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Overview — DQ Inspector{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1 class="page-title">Data Quality Dashboard</h1>
+    <p class="page-desc">Select a module to begin inspection</p>
+</div>
+
+<div class="module-grid">
+
+    <a href="/coverage" class="module-card blue">
+        <div class="module-tag">Module 01</div>
+        <i class="ti ti-database module-icon"></i>
+        <div class="module-name">Coverage</div>
+        <div class="module-desc">Missing values, null rates &amp; completeness across columns</div>
+        <i class="ti ti-arrow-right module-arrow"></i>
+    </a>
+
+    <a href="/noise" class="module-card orange">
+        <div class="module-tag">Module 02</div>
+        <i class="ti ti-wave-sine module-icon"></i>
+        <div class="module-name">Noise</div>
+        <div class="module-desc">Outlier detection, variance &amp; signal-to-noise analysis</div>
+        <i class="ti ti-arrow-right module-arrow"></i>
+    </a>
+
+    <a href="/integrity" class="module-card green">
+        <div class="module-tag">Module 03</div>
+        <i class="ti ti-shield-check module-icon"></i>
+        <div class="module-name">Integrity</div>
+        <div class="module-desc">Constraint violations, type errors &amp; referential integrity</div>
+        <i class="ti ti-arrow-right module-arrow"></i>
+    </a>
+
+    <a href="/duplicates" class="module-card red">
+        <div class="module-tag">Module 04</div>
+        <i class="ti ti-copy module-icon"></i>
+        <div class="module-name">Duplicates</div>
+        <div class="module-desc">Exact &amp; fuzzy duplicate detection across rows</div>
+        <i class="ti ti-arrow-right module-arrow"></i>
+    </a>
+
+</div>
+
+{% endblock %}

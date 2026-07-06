@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Integrity Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1 class="page-title">Integrity Metrics</h1>
+    <p class="page-desc">
+        Referential integrity and business rule consistency checks
+    </p>
+</div>
+
+<!-- KPI Cards -->
+<div class="metric-grid">
+
+    <div class="metric-card">
+        <div class="metric-label">Broken References</div>
+        <div class="metric-value red">
+            {{ broken_refs if broken_refs is not none else "—" }}
+        </div>
+        <div class="metric-sub">invalid foreign key links</div>
+    </div>
+
+    <div class="metric-card">
+        <div class="metric-label">Business Logic Issues</div>
+        <div class="metric-value orange">
+            {{ business_issues if business_issues is not none else "—" }}
+        </div>
+        <div class="metric-sub">rule violations detected</div>
+    </div>
+
+    <div class="metric-card">
+        <div class="metric-label">Class ↔ Level Inconsistency</div>
+        <div class="metric-value blue">
+            {{ class_level_inconsistency if class_level_inconsistency is not none else "—" }}
+        </div>
+        <div class="metric-sub">mismatched class-level records</div>
+    </div>
+
+</div>
+
+<!-- Charts -->
+<div class="section">
+    <div class="section-title">Integrity Analysis</div>
+
+    <div class="chart-grid">
+        {% for image in images %}
+        <div class="chart-item">
+            <img
+                src="{{ url_for('static', filename=image) }}"
+                alt="Integrity chart"
+                class="chart-img"
+            >
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+{% endblock %}

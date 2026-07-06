@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Coverage — DQ Inspector{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1 class="page-title">Coverage Metrics</h1>
+    <p class="page-desc">Null rates & completeness across all columns</p>
+</div>
+
+<!-- KPI Summary Cards -->
+<div class="metric-grid">
+
+    <div class="metric-card">
+        <div class="metric-label">Avg Coverage</div>
+        <div class="metric-value blue">
+            {{ avg_coverage if avg_coverage is not none else "—" }}
+        </div>
+        <div class="metric-sub">across all columns</div>
+    </div>
+
+    <div class="metric-card">
+        <div class="metric-label">High Coverage</div>
+        <div class="metric-value green">
+            {{ high_coverage if high_coverage is not none else "—" }}
+        </div>
+        <div class="metric-sub">columns ≥ 80%</div>
+    </div>
+
+    <div class="metric-card">
+        <div class="metric-label">Low Coverage</div>
+        <div class="metric-value red">
+            {{ low_coverage if low_coverage is not none else "—" }}
+        </div>
+        <div class="metric-sub">columns &lt; 50%</div>
+    </div>
+
+</div>
+
+<!-- Chart Grid -->
+<div class="section">
+    <div class="section-title">Per-column breakdown</div>
+
+    <div class="chart-grid">
+        {% for image in images %}
+        <div class="chart-item">
+            <img
+                src="{{ url_for('static', filename=image) }}"
+                alt="Coverage chart"
+                class="chart-img"
+            >
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
